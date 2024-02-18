@@ -24,9 +24,9 @@ jobs:
           terraform_version: 0.14.9
 
       - name: Setup Google Credentials
-        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > key
+        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > KEY.json
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: key
+          GOOGLE_APPLICATION_CREDENTIALS: KEY.json
 
       - name: Terraform Init
         run: terraform init
