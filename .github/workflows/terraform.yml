@@ -24,9 +24,9 @@ jobs:
           terraform_version: 0.14.9
 
       - name: Setup Google Credentials
-        run: 
+        run: |
           echo '${{ secrets.KEY }}' > key.json
-            echo "GOOGLE_APPLICATION_CREDENTIALS=key.json" > $GITHUB_ENV
+          echo "GOOGLE_APPLICATION_CREDENTIALS=key.json" >> $GITHUB_ENV
         env:
           GOOGLE_APPLICATION_CREDENTIALS: key.json
 
@@ -39,6 +39,3 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-
-      
-      
