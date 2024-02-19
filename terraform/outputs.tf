@@ -6,7 +6,3 @@ output "topic_name" {
   value = google_pubsub_topic.topic_name.name
 }
 
-output "service_account_id" {
-  value       = google_service_account.sa.id
-  description = "ID da service account criada."
-}
