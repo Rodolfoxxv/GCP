@@ -24,19 +24,11 @@ jobs:
           terraform_version: 0.14.9
 
       - name: Setup Google Credentials
-<<<<<<< HEAD
         env:
           KEY: ${{ secrets.KEY }}
         run: |
-          echo "$KEY" > terraform/key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=terraform/key.json
-=======
-        run: |
-          echo '${{ secrets.KEY }}' > key.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=key.json" >> $GITHUB_ENV
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: key.json
->>>>>>> ac3c108d3075fe3049041996e35ab07533f78632
+          echo "$KEY" > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
       - name: Terraform Init
         run: terraform init
