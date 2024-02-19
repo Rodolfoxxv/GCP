@@ -10,6 +10,20 @@ resource "google_bigquery_dataset" "dataset" {
   }
 }
 
+locals {
+  key_json = base64decode(google_service_account_key.key.private_key)
+}
+
+resource "google_service_account_key" "key" {
+  service_account_id = google_service_account.sa.name
+}
+
+resource "local_file" "key" {
+  content  = local.key_json
+  filename = "${path.module}/key.json"
+}
+
+
 resource "google_bigquery_dataset_access" "access" {
   dataset_id = google_bigquery_dataset.dataset.dataset_id
 
