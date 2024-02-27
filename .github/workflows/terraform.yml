@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # updated to v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3  # updated to v3
         with:
           terraform_version: 0.14.9
 
@@ -29,6 +29,11 @@ jobs:
         run: |
           echo "$KEY" > key.json
           export GOOGLE_APPLICATION_CREDENTIALS=key.json
+
+      - name: Check Resource Existence
+        run: |
+          # Use gcloud or other CLI tools to check resource existence
+          # If the resource exists, write its configuration to a .tf file
 
       - name: Terraform Init
         run: terraform init
