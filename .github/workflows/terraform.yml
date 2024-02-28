@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # updated to v4
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3  # updated to v3
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 0.14.9
 
@@ -32,8 +32,21 @@ jobs:
 
       - name: Check Resource Existence
         run: |
-          # Use gcloud or other CLI tools to check resource existence
-          # If the resource exists, write its configuration to a .tf file
+          BUCKET_SUFFIX=$(( RANDOM % 900 + 100 ))
+          BUCKET_NAME="my-terraform-bucket-$BUCKET_SUFFIX"
+          BUCKET_EXISTS=$(gsutil ls -b gs://$BUCKET_NAME > /dev/null 2>&1; echo $?)
+          if [ $BUCKET_EXISTS -eq 0 ]; then
+            echo "Bucket exists. Writing its configuration to a .tf file."
+            echo "resource \"google_storage_bucket\" \"bucket_name\" {
+              name     = \"$BUCKET_NAME\"
+              location = var.region
+              versioning {
+                enabled = true
+              }
+            }" > existing_bucket.tf
+          else
+            echo "Bucket does not exist."
+          fi
 
       - name: Terraform Init
         run: terraform init
