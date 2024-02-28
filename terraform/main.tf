@@ -19,15 +19,3 @@ resource "google_bigquery_dataset_access" "access" {
   special_group = "projectWriters"
 }
 
-output "dataset_id" {
-  value = google_bigquery_dataset.dataset[0].dataset_id
-}
-
-output "dataset_location" {
-  value = google_bigquery_dataset.dataset[0].location
-}
-
-output "dataset_self_link" {
-  value = google_bigquery_dataset.dataset[0].self_link
-}
-
