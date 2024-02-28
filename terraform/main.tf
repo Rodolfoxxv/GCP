@@ -1,4 +1,5 @@
 resource "google_bigquery_dataset" "dataset" {
+  count                       = lookup(var.env, "create_dataset", true) ? 1 : 0
   dataset_id                  = "projeto"
   friendly_name               = "My Dataset"
   description                 = "Dataset projetos"
@@ -11,21 +12,22 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 resource "google_bigquery_dataset_access" "access" {
-  dataset_id = google_bigquery_dataset.dataset.dataset_id
+  count      = lookup(var.env, "create_dataset", true) ? 1 : 0
+  dataset_id = google_bigquery_dataset.dataset[0].dataset_id
 
   role          = "READER"
   special_group = "projectWriters"
 }
 
 output "dataset_id" {
-  value = google_bigquery_dataset.dataset.dataset_id
+  value = google_bigquery_dataset.dataset[0].dataset_id
 }
 
 output "dataset_location" {
-  value = google_bigquery_dataset.dataset.location
+  value = google_bigquery_dataset.dataset[0].location
 }
 
 output "dataset_self_link" {
-  value = google_bigquery_dataset.dataset.self_link
+  value = google_bigquery_dataset.dataset[0].self_link
 }
 

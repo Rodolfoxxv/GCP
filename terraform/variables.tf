@@ -7,3 +7,8 @@ variable "region" {
   type        = string
   description = "The region where resources will be created."
 }
+
+variable "env" {
+  type = map(string)
+  default = {}
+}

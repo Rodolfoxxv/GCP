@@ -1,6 +1,7 @@
 #resource "google_storage_bucket" "bucket_name" {
- # name     = "my-terraform-bucket-${random_integer.bucket_suffix.result}"
-  #location = var.region
+#  count    = lookup(var.env, "create_bucket", true) ? 1 : 0
+#  name     = "my-terraform-bucket-${random_integer.bucket_suffix.result}"
+# location = var.region
 
 #  versioning {
 #    enabled = true
