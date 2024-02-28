@@ -2,7 +2,8 @@
 #  value = google_storage_bucket.bucket_name.name
 #}
 
-output "topic_name" {
-  value = google_pubsub_topic.topic_name.name
+output "topic_names" {
+  value = [for i in google_pubsub_topic.topic_name : i.name]
 }
+
 
