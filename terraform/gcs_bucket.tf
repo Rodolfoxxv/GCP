@@ -12,3 +12,10 @@
 #  min = 100
 #  max = 999
 #}
+
+#terraform {
+#  backend "gcs" {
+#    bucket  = "nome-do-seu-bucket"
+#    prefix  = "terraform/state"
+#  }
+#}
