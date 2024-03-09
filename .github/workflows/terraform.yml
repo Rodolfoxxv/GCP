@@ -23,10 +23,12 @@ jobs:
         with:
           terraform_version: 1.0.0
 
-      - name: Setup Google Credentials
-        run: echo '${{ secrets.KEY }}' > creds.json
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: portfolioentrada
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
+          GOOGLE_APPLICATION_CREDENTIALS: creds.json
 
       - name: Terraform Init
         run: terraform init
