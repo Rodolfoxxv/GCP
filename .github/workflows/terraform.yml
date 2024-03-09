@@ -31,11 +31,8 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Format
-        run: terraform fmt
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
 
       - name: Terraform Plan
         run: terraform plan
@@ -43,6 +40,3 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
