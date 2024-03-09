@@ -18,13 +18,9 @@ resource "google_bigquery_dataset" "dataset" {
   labels = {
     env = "default"
   }
+
+  access {
+    role          = "READER"
+    special_group = "projectWriters"
+  }
 }
-
-resource "google_bigquery_dataset_access" "access" {
-  count      = lookup(var.env, "create_dataset", true) ? 1 : 0
-  dataset_id = google_bigquery_dataset.dataset[0].dataset_id
-
-  role          = "READER"
-  special_group = "projectWriters"
-}
-
