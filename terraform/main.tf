@@ -1,4 +1,5 @@
 terraform {
+  required_version = ">= 1.1.2"
   backend "gcs" {
     bucket  = "entrada_terraform"
     prefix  = "terraform/state"
@@ -25,4 +26,3 @@ resource "google_bigquery_dataset_access" "access" {
   role          = "READER"
   special_group = "projectWriters"
 }
-

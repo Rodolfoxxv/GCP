@@ -13,7 +13,9 @@ variable "env" {
   default = {}
 }
 
-resource "google_storage_bucket" "bucket" {
-  name     = "entrada_terraform"
-  location = var.region
+variable "google_credentials" {
+  description = "The Google Cloud credentials"
+  type        = object({
+    project_id = string
+  })
 }

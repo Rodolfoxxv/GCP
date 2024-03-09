@@ -16,19 +16,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 0.14.9
+          terraform_version: 1.1.2
 
       - name: Setup Google Credentials
         env:
-          KEY: ${{ secrets.KEY }}
+          GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
         run: |
-          echo "$KEY" > key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=$PWD/key.json
+          echo "$GOOGLE_CREDENTIALS" > creds.json
+          export GOOGLE_APPLICATION_CREDENTIALS=creds.json
 
       - name: Terraform Init
         run: terraform init
