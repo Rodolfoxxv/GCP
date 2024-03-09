@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -27,9 +27,9 @@ jobs:
         env:
           KEY: ${{ secrets.KEY }}
         run: |
-          echo "$KEY" > /tmp/key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
-       
+          echo "$KEY" | base64 --decode > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=key.json
+
       - name: Check Resource Existence
         env:
           PROJECT_ID: portfolioentrada
