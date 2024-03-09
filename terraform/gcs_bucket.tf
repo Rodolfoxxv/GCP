@@ -10,7 +10,7 @@ resource "google_storage_bucket" "bucket_name" {
 
 resource "google_storage_bucket" "fixed_bucket_name" {
   count    = lookup(var.env, "create_fixed_bucket", true) ? 1 : 0
-  name     = "entrada_terraform"
+  name     = "entrada_terraform_fixed"
   location = var.region
 
   versioning {
@@ -20,7 +20,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
 
 resource "google_storage_bucket" "additional_bucket_name" {
   count    = lookup(var.env, "create_additional_bucket", true) ? 1 : 0
-  name     = "entrada_terraform"
+  name     = "entrada_terraform_additional"
   location = var.region
 
   versioning {
