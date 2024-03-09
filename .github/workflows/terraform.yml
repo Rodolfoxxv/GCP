@@ -25,9 +25,9 @@ jobs:
 
       - name: Setup Google Credentials
         env:
-          KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
-          echo "$KEY" > key.json
+          echo "$GOOGLE_CREDENTIALS" > key.json
           export GOOGLE_APPLICATION_CREDENTIALS=key.json
      
 
