@@ -6,10 +6,6 @@ output "fixed_bucket_name" {
   value = [for i in google_storage_bucket.fixed_bucket_name : i.name]
 }
 
-output "additional_bucket_name" {
-  value = [for i in google_storage_bucket.additional_bucket_name : i.name]
-}
-
 output "topic_names" {
   value = [for i in google_pubsub_topic.topic_name : i.name]
 }
