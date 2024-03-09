@@ -27,9 +27,9 @@ jobs:
         env:
           KEY: ${{ secrets.KEY }}
         run: |
-          echo "$KEY" > key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=key.json
-
+          echo "$KEY" > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
+       
       - name: Check Resource Existence
         env:
           PROJECT_ID: portfolioentrada
