@@ -9,10 +9,12 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-
+    env:
+      PROJECT_ID: portfolioentrada
     defaults:
       run:
         working-directory: terraform
+    
 
     steps:
       - name: Checkout
@@ -29,6 +31,11 @@ jobs:
           echo "PROJECT_ID=portfolioentrada" >> $GITHUB_ENV
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
+
+      - name: Authenticate with Google Cloud
+        run: |
+          gcloud auth activate-service-account --key-file=creds.json
+          gcloud config set project ${{ env.PROJECT_ID }}
 
       - name: Terraform Init
         run: terraform init
