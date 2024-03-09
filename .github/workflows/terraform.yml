@@ -30,55 +30,6 @@ jobs:
           echo "$KEY" > key.json
           export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
-      - name: Check Resource Existence
-        env:
-          PROJECT_ID: portfolioentrada
-        run: |
-          BUCKET_SUFFIX=$(( RANDOM % 900 + 100 ))
-          BUCKET_NAME="my-terraform-bucket-$BUCKET_SUFFIX"
-          BUCKET_EXISTS=$(gsutil ls -b gs://$BUCKET_NAME > /dev/null 2>&1; echo $?)
-          if [ $BUCKET_EXISTS -eq 0 ]; then
-            echo "Bucket exists. Writing its configuration to a .tf file."
-            echo "resource \"google_storage_bucket\" \"bucket_name\" {
-              name     = \"$BUCKET_NAME\"
-              location = var.region
-              versioning {
-                enabled = true
-              }
-            }" > existing_bucket.tf
-          else
-            echo "Bucket does not exist."
-          fi
-
-          DATASET_ID="projeto"
-          DATASET_EXISTS=$(bq --project_id=$PROJECT_ID ls -d $DATASET_ID > /dev/null 2>&1; echo $?)
-          if [ $DATASET_EXISTS -eq 0 ]; then
-            echo "Dataset exists. Writing its configuration to a .tf file."
-            echo "resource \"google_bigquery_dataset\" \"dataset\" {
-              dataset_id                  = \"$DATASET_ID\"
-              friendly_name               = \"My Dataset\"
-              description                 = \"Dataset projetos\"
-              location                    = var.region
-              default_table_expiration_ms = 3600000
-              labels = {
-                env = \"default\"
-              }
-            }" > existing_dataset.tf
-          else
-            echo "Dataset does not exist."
-          fi
-
-          TOPIC_NAME="registro"
-          TOPIC_EXISTS=$(gcloud pubsub topics describe $TOPIC_NAME > /dev/null 2>&1; echo $?)
-          if [ $TOPIC_EXISTS -eq 0 ]; then
-            echo "Topic exists. Writing its configuration to a .tf file."
-            echo "resource \"google_pubsub_topic\" \"topic_name\" {
-              name = \"$TOPIC_NAME\"
-            }" > existing_topic.tf
-          else
-            echo "Topic does not exist."
-          fi
-
       - name: Terraform Init
         run: terraform init
 
