@@ -21,7 +21,7 @@ jobs:
       - name: Terraform Init
         run: |
           echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" > env.file
-          terraform -chdir=GCP/terraform/ init
+          terraform init -chdir=/terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -31,7 +31,7 @@ jobs:
       - name: Terraform Plan
         run: |
           echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" > env.file
-          terraform -chdir=GCP/terraform/ plan
+          terraform plan -chdir=/terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -39,6 +39,6 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" > env.file
-          terraform -chdir=GCP/terraform/ apply --auto-approve
+          terraform apply --auto-approve -chdir=/terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
