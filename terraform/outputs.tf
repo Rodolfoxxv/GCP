@@ -1,4 +1,4 @@
-/*
+
 output "bucket_name" {
   value = google_storage_bucket.bucket_name.name
 }
@@ -26,4 +26,4 @@ output "dataset_locations" {
 output "dataset_links" {
   value = [for i in google_bigquery_dataset.dataset : i.self_link]
 }
-*/
+

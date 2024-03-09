@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "bucket_name" {
+/*resource "google_storage_bucket" "bucket_name" {
   count    = lookup(var.env, "create_bucket", true) ? 1 : 0
   name     = "my-terraform-bucket-${random_integer.bucket_suffix.result}"
   location = var.region
@@ -31,4 +31,4 @@ resource "google_storage_bucket" "additional_bucket_name" {
 resource "random_integer" "bucket_suffix" {
   min = 100
   max = 999
-}
+} */
