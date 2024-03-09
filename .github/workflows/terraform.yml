@@ -1,44 +1,38 @@
-name: 'Terraform'
+name: 'Terraform CI'
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: terraform
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.1.2
-
-      - name: Setup Google Credentials
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
-        run: |
-          echo "$GOOGLE_CREDENTIALS" > creds.json
-          export GOOGLE_APPLICATION_CREDENTIALS=creds.json
+        uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
         run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+      - name: Terraform Format
+        run: terraform fmt --check
 
       - name: Terraform Plan
         run: terraform plan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply --auto-approve
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
