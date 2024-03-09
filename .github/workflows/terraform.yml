@@ -28,7 +28,7 @@ jobs:
           KEY: ${{ secrets.KEY }}
         run: |
           echo "$KEY" > key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=$PWD/key.json
 
       - name: Terraform Init
         run: terraform init
