@@ -32,7 +32,7 @@ jobs:
 
       - name: Check Resource Existence
         env:
-          PROJECT_ID: pythoncurso-402901
+          PROJECT_ID: portfolioentrada
         run: |
           BUCKET_SUFFIX=$(( RANDOM % 900 + 100 ))
           BUCKET_NAME="my-terraform-bucket-$BUCKET_SUFFIX"
