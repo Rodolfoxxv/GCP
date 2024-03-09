@@ -12,3 +12,8 @@ variable "env" {
   type = map(string)
   default = {}
 }
+
+resource "google_storage_bucket" "bucket" {
+  name     = "entrada_terraform"
+  location = var.region
+}
