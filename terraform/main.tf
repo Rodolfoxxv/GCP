@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "3.5.0"
+    }
+  }
+}
+
 resource "google_bigquery_dataset" "dataset" {
   count                       = lookup(var.env, "create_dataset", true) ? 1 : 0
   dataset_id                  = "projeto"

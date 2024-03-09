@@ -1,13 +1,13 @@
 output "bucket_name" {
-  value = google_storage_bucket.bucket_name.name
+  value = [for i in google_storage_bucket.bucket_name : i.name]
 }
 
 output "fixed_bucket_name" {
-  value = google_storage_bucket.fixed_bucket_name.name
+  value = [for i in google_storage_bucket.fixed_bucket_name : i.name]
 }
 
 output "additional_bucket_name" {
-  value = google_storage_bucket.additional_bucket_name.name
+  value = [for i in google_storage_bucket.additional_bucket_name : i.name]
 }
 
 output "topic_names" {
