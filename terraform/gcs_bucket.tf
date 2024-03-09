@@ -18,15 +18,6 @@ resource "google_storage_bucket" "fixed_bucket_name" {
   }
 }
 
-resource "google_storage_bucket" "additional_bucket_name" {
-  count    = lookup(var.env, "create_additional_bucket", true) ? 1 : 0
-  name     = "bucket-backend-terraform"
-  location = var.region
-
-  versioning {
-    enabled = true
-  }
-}
 
 resource "random_integer" "bucket_suffix" {
   min = 100
