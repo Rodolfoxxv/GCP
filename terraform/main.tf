@@ -9,7 +9,7 @@ terraform {
 resource "google_bigquery_dataset" "dataset" {
   count                       = lookup(var.env, "create_dataset", true) ? 1 : 0
   dataset_id                  = "projeto"
-  friendly_name               = "My Dataset"
+  friendly_name               = "analytics"
   description                 = "Dataset projetos"
   location                    = var.region
   default_table_expiration_ms = 3600000
