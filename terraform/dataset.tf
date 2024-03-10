@@ -1,6 +1,6 @@
 resource "google_bigquery_dataset" "manual_dataset" {
   count                       = lookup(var.env, "create_manual_dataset", true) ? 1 : 0
-  dataset_id                  = "manual"
+  dataset_id                  = var.manual_dataset
   friendly_name               = "Manual Dataset"
   description                 = "Dataset for manual updates"
   location                    = var.region
@@ -23,7 +23,7 @@ resource "google_bigquery_dataset" "manual_dataset" {
 
 resource "google_bigquery_dataset" "auto_dataset" {
   count                       = lookup(var.env, "create_auto_dataset", true) ? 1 : 0
-  dataset_id                  = "auto"
+  dataset_id                  = var.auto_dataset
   friendly_name               = "Automatic Dataset"
   description                 = "Dataset for automatic updates"
   location                    = var.region
@@ -43,3 +43,4 @@ resource "google_bigquery_dataset" "auto_dataset" {
     user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
   }
 }
+

@@ -10,7 +10,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
 
 resource "google_storage_bucket" "manual_updates" {
   count    = lookup(var.env, "create_manual_updates_bucket", true) ? 1 : 0
-  name     = "entrada_manual_updates"
+  name = var.manual_updates_bucket
   location = var.region
 
   versioning {
@@ -20,7 +20,7 @@ resource "google_storage_bucket" "manual_updates" {
 
 resource "google_storage_bucket" "automatic_updates" {
   count    = lookup(var.env, "create_automatic_updates_bucket", true) ? 1 : 0
-  name     = "entrada_automatic_updates"
+  name = var.automatic_updates_bucket
   location = var.region
 
   versioning {
