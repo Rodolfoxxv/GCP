@@ -1,7 +1,3 @@
-locals {
-  tables = { for table in var.tables : table["table_id"] => table }
-}
-
 variable "project_id" {
   type        = string
   description = "The ID of the project where resources will be created."
