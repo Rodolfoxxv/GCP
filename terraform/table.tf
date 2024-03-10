@@ -3,10 +3,10 @@ locals {
 }
 
 resource "google_bigquery_table" "tables" {
-  for_each = local.tables
+  count = length(local.tables)
 
-  dataset_id = each.value["dataset_id"]
-  table_id   = each.key
+  dataset_id = local.tables[count.index]["dataset_id"]
+  table_id   = local.tables[count.index]["table_id"]
 
   external_data_configuration {
     autodetect    = true
@@ -17,7 +17,7 @@ resource "google_bigquery_table" "tables" {
     }
 
     source_uris = [
-      "gs://${var.manual_updates_bucket}/Supermarket/${each.value.table_id}.csv",
+      "gs://${var.manual_updates_bucket}/Supermarket/${local.tables[count.index]["table_id"]}.csv",
     ]
   }
 
