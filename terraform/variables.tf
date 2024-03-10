@@ -13,7 +13,7 @@ variable "env" {
   default = {}
 }
 
-#Buckts--------------------------------------------------------------------
+#Bucket--------------------------------------------------------------------
 variable "manual_updates_bucket" {
   description = "O nome do bucket de atualizações manuais"
   type        = string
@@ -24,6 +24,12 @@ variable "automatic_updates_bucket" {
   description = "O nome do bucket de atualizações automáticas"
   type        = string
   default     = "entrada_automatic_updates"
+}
+
+variable "schema_bucket" {
+  description = "O nome do bucket para os esquemas"
+  type        = string
+  default     = "entrada_schema_bucket"
 }
 
 
@@ -39,3 +45,6 @@ variable "auto_dataset" {
   type        = string
   default     = "auto"
 }
+
+
+#schema--------------------------------------------------------------------

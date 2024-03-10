@@ -6,6 +6,10 @@ output "auto_bucket_name" {
   value = [for i in google_storage_bucket.automatic_updates : i.name]
 }
 
+output "schema_bucket_name" {
+  value = [for i in google_storage_bucket.schema_bucket : i.name]
+}
+
 output "manual_dataset_id" {
   value = [for i in google_bigquery_dataset.manual_dataset : i.dataset_id]
 }

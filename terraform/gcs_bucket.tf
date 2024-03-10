@@ -27,3 +27,14 @@ resource "google_storage_bucket" "automatic_updates" {
     enabled = true
   }
 }
+
+
+resource "google_storage_bucket" "schema_bucket" {
+  count    = lookup(var.env, "create_schema_bucket", true) ? 1 : 0
+  name     = var.schema_bucket
+  location = var.region
+
+  versioning {
+    enabled = true
+  }
+}
