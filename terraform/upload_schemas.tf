@@ -1,7 +1,7 @@
 data "google_storage_bucket_object" "object" {
-  count  = length(var.schema_files)
-  name   = var.schema_files[count.index]
-  bucket = var.schema_bucket
+  count  = length(var.schemas)
+  name   = var.schemas[count.index].schema
+  bucket = var.schemas[count.index].bucket
 }
 
 locals {
