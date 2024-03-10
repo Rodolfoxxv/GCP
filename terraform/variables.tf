@@ -80,8 +80,26 @@ variable "tables" {
   description = "Lista de tabelas"
   type        = list(object({
     table_id   = string
-    schema     = string
+    schema_id  = string
     dataset_id = string
   }))
-  default     = []
+  default = [
+    { 
+    table_id          = "manual_mk_invoices",
+    schema_id         = "invoices_schema",  
+    dataset_id        = "manual"
+    },
+    
+    { 
+    table_id          = "manual_mk_orderleads",
+    schema_id         = "orderLeads_schema",  
+    dataset_id        = "manual"
+    },
+
+    {
+    table_id          = "manual_mk_salesteam",
+    schema_id         = "salesTeam_schema",  
+    dataset_id        = "manual"
+    }    
+  ]
 }

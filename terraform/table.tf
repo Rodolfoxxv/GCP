@@ -1,10 +1,13 @@
 locals {
   schemas_map = { for schema in var.schemas : schema.schema_id => schema }
+  #tables_map  = { for tbl in var.tables : tbl.table_id => tbl }
 }
 
-resource "google_bigquery_table" "tb_manual_invoices" {
-  dataset_id = var.manual_dataset
-  table_id   = var.tables[0].table_id
+resource "google_bigquery_table" "tables" {
+  for_each = { for tbl in var.tables : tbl.table_id => tbl }
+
+  dataset_id = each.value.dataset_id
+  table_id   = each.value.table_id
 
   external_data_configuration {
     autodetect    = true
@@ -15,49 +18,9 @@ resource "google_bigquery_table" "tb_manual_invoices" {
     }
 
     source_uris = [
-      "gs://${var.manual_updates_bucket}/Supermarket/Invoices.csv",
+      "gs://${var.manual_updates_bucket}/Supermarket/${each.value.table_id}.csv",
     ]
   }
 
-  schema = local.schemas_map[var.tables[0].schema_id].schema
-}
-
-resource "google_bigquery_table" "tb_manual_salesteam" {
-  dataset_id = var.manual_dataset
-  table_id   = var.tables[1].table_id
-
-  external_data_configuration {
-    autodetect    = true
-    source_format = "CSV"
-    csv_options {
-      encoding = "UTF-8"
-      quote    = "\""
-    }
-
-    source_uris = [
-      "gs://${var.manual_updates_bucket}/Supermarket/SalesTeam.csv",
-    ]
-  }
-
-  schema = local.schemas_map[var.tables[1].schema_id].schema
-}
-
-resource "google_bigquery_table" "tb_manual_orderleads" {
-  dataset_id = var.manual_dataset
-  table_id   = var.tables[2].table_id
-
-  external_data_configuration {
-    autodetect    = true
-    source_format = "CSV"
-    csv_options {
-      encoding = "UTF-8"
-      quote    = "\""
-    }
-
-    source_uris = [
-      "gs://${var.manual_updates_bucket}/Supermarket/OrderLeads.csv",
-    ]
-  }
-
-  schema = local.schemas_map[var.tables[2].schema_id].schema
+  schema = local.schemas_map[each.value.schema_id].schema
 }
