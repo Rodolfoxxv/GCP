@@ -3,8 +3,9 @@ region     = "us-central1"
 
 
 # Buckts------------------------------------------------------
-schema_bucket            = "entrada_schema_bucket"
 ent_terraform            = "entrada_terraform"
+#schema_bucket            = "entrada_schema_bucket"
+
 
 /*
 manual_updates_bucket    = "entrada_manual_updates"

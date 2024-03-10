@@ -14,17 +14,18 @@ variable "env" {
 }
 
 #Bucket--------------------------------------------------------------------
+variable "ent_terraform" {
+  description = "O nome do bucket para os esquemas"
+  type        = string
+  default     = "entrada_terraform"
+}
+/*
 variable "schema_bucket" {
   description = "O nome do bucket para os esquemas"
   type        = string
   default     = "entrada_schema_bucket"
 }
 
-variable "ent_terraform" {
-  description = "O nome do bucket para os esquemas"
-  type        = string
-  default     = "entrada_terraform"
-}
 /*
 variable "manual_updates_bucket" {
   description = "O nome do bucket de atualizações manuais"

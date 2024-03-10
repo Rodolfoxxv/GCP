@@ -5,8 +5,8 @@ terraform {
       version = "3.5.0"
     }
   }
-
-
+}
+/*
   backend "gcs" {
     bucket = "entrada_terraform"
     prefix = "terraform/state"

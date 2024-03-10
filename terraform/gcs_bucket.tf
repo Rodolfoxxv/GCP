@@ -7,7 +7,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
     enabled = true
   }
 }
-
+/*
 resource "google_storage_bucket" "schema_bucket" {
   count    = lookup(var.env, "create_schema_bucket", true) ? 1 : 0
   name     = var.schema_bucket
