@@ -14,6 +14,11 @@ resource "google_bigquery_dataset" "manual_dataset" {
     role          = "READER"
     special_group = "projectWriters"
   }
+
+  access {
+    role          = "OWNER"
+    user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
+  }
 }
 
 resource "google_bigquery_dataset" "auto_dataset" {
@@ -31,5 +36,10 @@ resource "google_bigquery_dataset" "auto_dataset" {
   access {
     role          = "READER"
     special_group = "projectWriters"
+  }
+
+ access {
+    role          = "OWNER"
+    user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
   }
 }
