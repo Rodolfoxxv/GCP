@@ -1,3 +1,7 @@
+locals {
+  tables = { for table in var.tables : table["table_id"] => table }
+}
+
 variable "project_id" {
   type        = string
   description = "The ID of the project where resources will be created."
@@ -73,6 +77,16 @@ variable "schemas" {
     }
   ]
 }
+
+variable "schema_files" {
+  default = [
+    "Invoices_schema.json",
+    "OrderLeads_schema.json",
+    "SalesTeam_schema.json"
+    // Adicione mais nomes de arquivos conforme necessário
+  ]
+}
+
 
 
 #tables--------------------------------------------------------------------

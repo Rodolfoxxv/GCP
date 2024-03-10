@@ -1,13 +1,13 @@
-resource "google_bigquery_dataset" "manual_dataset" {
-  count                       = lookup(var.env, "create_manual_dataset", true) ? 1 : 0
-  dataset_id                  = var.manual_dataset
-  friendly_name               = "Manual Dataset"
-  description                 = "Dataset for manual updates"
+resource "google_bigquery_dataset" "dataset" {
+  for_each                    = toset([var.manual_dataset, var.auto_dataset])
+  dataset_id                  = each.key
+  friendly_name               = each.key
+  description                 = "Dataset for ${each.key} updates"
   location                    = var.region
   default_table_expiration_ms = 3600000
 
   labels = {
-    env = "manual"
+    env = each.key
   }
 
   access {
@@ -20,27 +20,3 @@ resource "google_bigquery_dataset" "manual_dataset" {
     user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
   }
 }
-
-resource "google_bigquery_dataset" "auto_dataset" {
-  count                       = lookup(var.env, "create_auto_dataset", true) ? 1 : 0
-  dataset_id                  = var.auto_dataset
-  friendly_name               = "Automatic Dataset"
-  description                 = "Dataset for automatic updates"
-  location                    = var.region
-  default_table_expiration_ms = 3600000
-
-  labels = {
-    env = "automatic"
-  }
-
-  access {
-    role          = "READER"
-    special_group = "projectWriters"
-  }
-
- access {
-    role          = "OWNER"
-    user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
-  }
-}
-

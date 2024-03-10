@@ -1,12 +1,13 @@
 locals {
   schemas_map = { for schema in var.schemas : schema.schema_id => file(schema.schema) }
+  tables = { for table in var.tables : table["table_id"] => table }
 }
 
 resource "google_bigquery_table" "tables" {
-  for_each = { for tbl in var.tables : tbl.table_id => tbl }
+  for_each = local.tables
 
-  dataset_id = each.value.dataset_id
-  table_id   = each.value.table_id
+  dataset_id = each.value["dataset_id"]
+  table_id   = each.key
 
   external_data_configuration {
     autodetect    = true
