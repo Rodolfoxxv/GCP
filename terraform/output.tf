@@ -1,7 +1,3 @@
-output "fixed_bucket_name" {
-  value = [for i in google_storage_bucket.fixed_bucket_name : i.name]
-}
-
 output "manual_bucket_name" {
   value = [for i in google_storage_bucket.manual_updates : i.name]
 }
