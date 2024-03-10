@@ -14,6 +14,18 @@ variable "env" {
 }
 
 #Bucket--------------------------------------------------------------------
+variable "schema_bucket" {
+  description = "O nome do bucket para os esquemas"
+  type        = string
+  default     = "entrada_schema_bucket"
+}
+
+variable "ent_terraform" {
+  description = "O nome do bucket para os esquemas"
+  type        = string
+  default     = "entrada_terraform"
+}
+/*
 variable "manual_updates_bucket" {
   description = "O nome do bucket de atualizações manuais"
   type        = string
@@ -26,11 +38,7 @@ variable "automatic_updates_bucket" {
   default     = "entrada_automatic_updates"
 }
 
-variable "schema_bucket" {
-  description = "O nome do bucket para os esquemas"
-  type        = string
-  default     = "entrada_schema_bucket"
-}
+
 
 
 #Dataset --------------------------------------------------------------------
@@ -47,7 +55,7 @@ variable "auto_dataset" {
 }
 
 
-#schema--------------------------------------------------------------------
+/*#schema--------------------------------------------------------------------
 variable "schemas" {
   description = "Lista de esquemas"
   type        = list(object({
@@ -112,6 +120,6 @@ variable "tables" {
     dataset_id        = "manual"
     }    
   ]
-}
+}*/
 
 

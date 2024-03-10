@@ -1,4 +1,4 @@
-locals {
+/*locals {
   tables = { for table in var.tables : table.table_id => table }
 }
 
@@ -22,4 +22,4 @@ resource "google_bigquery_table" "tables" {
   }
 
   schema = local.schemas_map[each.value.schema_id]
-}
+}*/

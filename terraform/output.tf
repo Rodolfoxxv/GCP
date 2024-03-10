@@ -1,13 +1,19 @@
+
+output "schema_bucket_name" {
+  value = [for i in google_storage_bucket.schema_bucket : i.name]
+}
+
+output "entrada_terraform" {
+  value = [for i in google_storage_bucket.schema_bucket : i.name]
+}
+
+/*
 output "manual_bucket_name" {
   value = [for i in google_storage_bucket.manual_updates : i.name]
 }
 
 output "auto_bucket_name" {
   value = [for i in google_storage_bucket.automatic_updates : i.name]
-}
-
-output "schema_bucket_name" {
-  value = [for i in google_storage_bucket.schema_bucket : i.name]
 }
 
 output "manual_dataset_id" {
@@ -33,3 +39,4 @@ output "auto_dataset_location" {
 output "auto_dataset_link" {
   value = [for i in google_bigquery_dataset.dataset : i.self_link if i.dataset_id == var.auto_dataset]
 }
+*/

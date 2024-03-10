@@ -5,8 +5,9 @@ terraform {
       version = "3.5.0"
     }
   }
+} 
 
-  backend "gcs" {
+  /*backend "gcs" {
     bucket = "entrada_terraform"
     prefix = "terraform/state"
   }
@@ -22,5 +23,5 @@ resource "google_storage_bucket_object" "object" {
   name   = "Supermarket/"
   bucket = google_storage_bucket.bucket.name
   content = ""
-}
+}*/
 

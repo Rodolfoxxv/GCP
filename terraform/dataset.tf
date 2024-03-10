@@ -1,4 +1,4 @@
-resource "google_bigquery_dataset" "dataset" {
+/*resource "google_bigquery_dataset" "dataset" {
   for_each                    = toset([var.manual_dataset, var.auto_dataset])
   dataset_id                  = each.key
   friendly_name               = each.key
@@ -20,3 +20,4 @@ resource "google_bigquery_dataset" "dataset" {
     user_by_email = "readerbigquery@portfolioentrada.iam.gserviceaccount.com"
   }
 }
+*/

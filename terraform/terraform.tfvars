@@ -3,9 +3,12 @@ region     = "us-central1"
 
 
 # Buckts------------------------------------------------------
+schema_bucket            = "entrada_schema_bucket"
+ent_terraform            = "entrada_terraform"
+
+/*
 manual_updates_bucket    = "entrada_manual_updates"
 automatic_updates_bucket = "entrada_automatic_updates"
-schema_bucket            = "entrada_schema_bucket"
 
 
 #Datasets-----------------------------------------------------
@@ -31,6 +34,6 @@ tables = [
     schema_id         = "salesTeam_schema",  
     dataset_id        = "manual"
     }    
-]
+]*/
 
 
