@@ -58,17 +58,17 @@ variable "schemas" {
   default = [
     {
       schema_id = "invoices_schema"
-      schema    = "./Invoices_schema.json"
+      schema    = "Invoices_schema.json"
       bucket    = "entrada_schema_bucket"
     },
     {
       schema_id = "orderLeads_schema"
-      schema    = "./OrderLeads_schema.json"
+      schema    = "OrderLeads_schema.json"
       bucket    = "entrada_schema_bucket"
     },
     {
       schema_id = "salesTeam_schema"
-      schema    = "./SalesTeam_schema.json"
+      schema    = "SalesTeam_schema.json"
       bucket    = "entrada_schema_bucket"
     }
   ]
