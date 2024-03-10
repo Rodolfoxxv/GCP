@@ -1,11 +1,11 @@
 output "entrada_terraform" {
   value = [for i in google_storage_bucket.fixed_bucket_name : i.name]
 }
-/*
+
 output "schema_bucket_name" {
   value = [for i in google_storage_bucket.schema_bucket : i.name]
 }
-
+/*
 output "manual_bucket_name" {
   value = [for i in google_storage_bucket.manual_updates : i.name]
 }

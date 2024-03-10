@@ -19,7 +19,7 @@ variable "ent_terraform" {
   type        = string
   default     = "entrada_terraform"
 }
-/*
+
 variable "schema_bucket" {
   description = "O nome do bucket para os esquemas"
   type        = string

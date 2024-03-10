@@ -4,7 +4,7 @@ region     = "us-central1"
 
 # Buckts------------------------------------------------------
 ent_terraform            = "entrada_terraform"
-#schema_bucket            = "entrada_schema_bucket"
+schema_bucket            = "entrada_schema_bucket"
 
 
 /*

@@ -7,7 +7,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
     enabled = true
   }
 }
-/*
+
 resource "google_storage_bucket" "schema_bucket" {
   count    = lookup(var.env, "create_schema_bucket", true) ? 1 : 0
   name     = var.schema_bucket
@@ -17,7 +17,7 @@ resource "google_storage_bucket" "schema_bucket" {
     enabled = true
   }
 }
-
+/*
 resource "google_storage_bucket" "manual_updates" {
   count    = lookup(var.env, "create_manual_updates_bucket", true) ? 1 : 0
   name = var.manual_updates_bucket
