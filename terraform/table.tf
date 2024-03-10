@@ -1,6 +1,5 @@
 locals {
-  schemas_map = { for schema in var.schemas : schema.schema_id => file(schema.schema) }
-
+  tables = { for table in var.tables : table["table_id"] => table }
 }
 
 resource "google_bigquery_table" "tables" {
@@ -22,5 +21,5 @@ resource "google_bigquery_table" "tables" {
     ]
   }
 
-  schema = local.schemas_map[each.value.schema_id]
+  schema = data.google_storage_bucket_object.object[count.index].content
 }
