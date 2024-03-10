@@ -44,7 +44,8 @@ data "local_file" "input" {
 
 resource "google_storage_bucket_object" "object" {
   name     = "input.json"
-  bucket   = google_storage_bucket.schema_bucket.name
+  bucket   = google_storage_bucket.schema_bucket[0].name
   source   = data.local_file.input.filename
   depends_on = [google_storage_bucket.schema_bucket]
 }
+
