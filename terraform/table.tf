@@ -1,6 +1,10 @@
+locals {
+  schemas_map = { for schema in var.schemas : schema.schema_id => schema }
+}
+
 resource "google_bigquery_table" "tb_manual_invoices" {
   dataset_id = var.manual_dataset
-  table_id   = "tb_manual_invoices"
+  table_id   = var.tables[0].table_id
 
   external_data_configuration {
     autodetect    = true
@@ -15,14 +19,12 @@ resource "google_bigquery_table" "tb_manual_invoices" {
     ]
   }
 
-  schema = "gs://${var.schema_bucket}/Invoices_schema.json"
+  schema = local.schemas_map[var.tables[0].schema_id].schema
 }
-
-
 
 resource "google_bigquery_table" "tb_manual_salesteam" {
   dataset_id = var.manual_dataset
-  table_id   = "tb_manual_salesteam"
+  table_id   = var.tables[1].table_id
 
   external_data_configuration {
     autodetect    = true
@@ -36,13 +38,13 @@ resource "google_bigquery_table" "tb_manual_salesteam" {
       "gs://${var.manual_updates_bucket}/Supermarket/SalesTeam.csv",
     ]
   }
-    schema = "gs://${var.schema_bucket}/SalesTeam_schema.json"
-}
 
+  schema = local.schemas_map[var.tables[1].schema_id].schema
+}
 
 resource "google_bigquery_table" "tb_manual_orderleads" {
   dataset_id = var.manual_dataset
-  table_id   = "tb_manual_orderleads"
+  table_id   = var.tables[2].table_id
 
   external_data_configuration {
     autodetect    = true
@@ -52,10 +54,10 @@ resource "google_bigquery_table" "tb_manual_orderleads" {
       quote    = "\""
     }
 
-   source_uris = [
-     "gs://${var.manual_updates_bucket}/Supermarket/OrderLeads.csv",
+    source_uris = [
+      "gs://${var.manual_updates_bucket}/Supermarket/OrderLeads.csv",
     ]
-
   }
-      schema = "gs://${var.schema_bucket}/OrderLeads_schema.json"
+
+  schema = local.schemas_map[var.tables[2].schema_id].schema
 }

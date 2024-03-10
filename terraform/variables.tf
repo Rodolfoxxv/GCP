@@ -48,3 +48,40 @@ variable "auto_dataset" {
 
 
 #schema--------------------------------------------------------------------
+variable "schemas" {
+  description = "Lista de esquemas"
+  type        = list(object({
+    schema_id = string
+    schema    = string
+    bucket    = string
+  }))
+  default = [
+    {
+      schema_id = "invoices_schema"
+      schema    = "./Invoices_schema.json"
+      bucket    = "entrada_schema_bucket"
+    },
+    {
+      schema_id = "orderLeads_schema"
+      schema    = "./OrderLeads_schema.json"
+      bucket    = "entrada_schema_bucket"
+    },
+    {
+      schema_id = "salesTeam_schema"
+      schema    = "./SalesTeam_schema.json"
+      bucket    = "entrada_schema_bucket"
+    }
+  ]
+}
+
+
+#tables--------------------------------------------------------------------
+variable "tables" {
+  description = "Lista de tabelas"
+  type        = list(object({
+    table_id   = string
+    schema     = string
+    dataset_id = string
+  }))
+  default     = []
+}
