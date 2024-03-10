@@ -1,5 +1,5 @@
 output "entrada_terraform" {
-  value = [for i in google_storage_bucket.entrada_terraform : i.name]
+  value = [for i in google_storage_bucket.fixed_bucket_name : i.name]
 }
 /*
 output "schema_bucket_name" {
