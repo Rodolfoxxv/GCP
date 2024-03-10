@@ -1,10 +1,10 @@
 resource "google_storage_bucket" "fixed_bucket_name" {
-  count    = lookup(var.env, "create_fixed_bucket", true) ? 1 : 0
+  count    = lookup(var.env, "create_fixed_bucket", false) ? 1 : 0
   name     = var.ent_terraform
   location = var.region
 
   versioning {
-    enabled = true
+    enabled = false
   }
 }
 
