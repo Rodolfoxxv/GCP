@@ -4,7 +4,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
   location = var.region
 
   versioning {
-    enabled = true
+    enabled = false
   }
 }
 
