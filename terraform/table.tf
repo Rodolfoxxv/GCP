@@ -21,5 +21,5 @@ resource "google_bigquery_table" "tables" {
     ]
   }
 
-  schema = data.google_storage_bucket_object.object[each.key].content
+  schema = local.schemas_map[each.value.schema_id]
 }
