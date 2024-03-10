@@ -5,14 +5,14 @@ terraform {
       version = "3.5.0"
     }
   }
-} 
 
-  /*backend "gcs" {
+
+  backend "gcs" {
     bucket = "entrada_terraform"
     prefix = "terraform/state"
   }
 }
-
+/*
 #Folder-------------------------------------------------------------------------
 resource "google_storage_bucket" "bucket" {
   name     = var.manual_updates_bucket
