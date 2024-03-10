@@ -35,6 +35,6 @@ resource "google_storage_bucket" "schema_bucket" {
   location = var.region
 
   versioning {
-    enabled = true
+    enabled = false
   }
 }
