@@ -38,3 +38,13 @@ resource "google_storage_bucket" "automatic_updates" {
   }
 }*/
 
+data "local_file" "input" {
+  filename = "${path.module}/schema_bk/input.json"
+}
+
+resource "google_storage_bucket_object" "object" {
+  name     = "input.json"
+  bucket   = google_storage_bucket.schema_bucket.name
+  source   = data.local_file.input.filename
+  depends_on = [google_storage_bucket.schema_bucket]
+}

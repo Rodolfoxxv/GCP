@@ -26,6 +26,12 @@ variable "schema_bucket" {
   default     = "entrada_schema_bucket"
 }
 
+variable "schema_dir" {
+  description = "O diretório onde os esquemas estão localizados"
+  type        = string
+  default     = "schema_bk"
+}
+
 /*
 variable "manual_updates_bucket" {
   description = "O nome do bucket de atualizações manuais"

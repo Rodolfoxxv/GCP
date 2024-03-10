@@ -5,7 +5,7 @@ region     = "us-central1"
 # Buckts------------------------------------------------------
 ent_terraform            = "entrada_terraform"
 schema_bucket            = "entrada_schema_bucket"
-
+schema_dir               = "GCP/main/terraform/schema_bk"
 
 /*
 manual_updates_bucket    = "entrada_manual_updates"
