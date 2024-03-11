@@ -32,6 +32,11 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
 
+      - name: Set up Cloud SDK
+        uses: docker://google/cloud-sdk:latest
+        with:
+          entrypoint: bash
+
       - name: Authenticate with Google Cloud
         run: |
           gcloud auth activate-service-account --key-file=creds.json > /dev/null 2>&1
@@ -52,12 +57,6 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-      
-      - name: Install Google Cloud BigQuery Component
-        run: |
-          gcloud components install bigquery
 
       - name: Load data to BigQuery
         run: bash load_data.sh
-      
-
