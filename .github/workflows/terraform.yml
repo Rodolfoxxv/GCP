@@ -54,4 +54,4 @@ jobs:
         run: terraform apply -auto-approve -input=false
 
       - name: Load data to BigQuery
-        run: bash terraform/load_data.sh
+        run: bash load_data.sh
