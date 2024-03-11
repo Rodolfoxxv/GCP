@@ -32,11 +32,6 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
 
-      - name: Set up Cloud SDK
-        uses: docker://google/cloud-sdk:latest
-        with:
-          entrypoint: bash
-
       - name: Authenticate with Google Cloud
         run: |
           gcloud auth activate-service-account --key-file=creds.json > /dev/null 2>&1

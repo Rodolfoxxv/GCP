@@ -6,19 +6,19 @@ DATASET="manual"
 PROJECT_ID="portfolioentrada"
 
 # Load data into tb_super_invoice
-gcloud bigquery load --source_format=CSV --skip_leading_rows=1 \
+bq --location=us-central1 load --source_format=CSV --skip_leading_rows=1 \
   --autodetect \
-  --source_uris=gs://${BUCKET}/supermarket/Invoices.csv \
-  ${PROJECT_ID}:${DATASET}.tb_super_invoice
+  ${PROJECT_ID}:${DATASET}.tb_super_invoice \
+  gs://${BUCKET}/Invoices.csv
 
 # Load data into tb_super_orderleads
-gcloud bigquery load --source_format=CSV --skip_leading_rows=1 \
+bq --location=us-central1 load --source_format=CSV --skip_leading_rows=1 \
   --autodetect \
-  --source_uris=gs://${BUCKET}/supermarket/OrderLeads.csv \
-  ${PROJECT_ID}:${DATASET}.tb_super_orderleads
+  ${PROJECT_ID}:${DATASET}.tb_super_orderleads \
+  gs://${BUCKET}/OrderLeads.csv
 
 # Load data into tb_super_salesteam
-gcloud bigquery load --source_format=CSV --skip_leading_rows=1 \
+bq --location=us-central1 load --source_format=CSV --skip_leading_rows=1 \
   --autodetect \
-  --source_uris=gs://${BUCKET}/supermarket/SalesTeam.csv \
-  ${PROJECT_ID}:${DATASET}.tb_super_salesteam
+  ${PROJECT_ID}:${DATASET}.tb_super_salesteam \
+  gs://${BUCKET}/SalesTeam.csv
