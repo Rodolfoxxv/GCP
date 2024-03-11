@@ -63,9 +63,10 @@ resource "google_storage_bucket" "entrada_auto" {
 resource "google_storage_bucket_object" "object" {
   name    = "supermarket/"
   bucket  = google_storage_bucket.entrada_manual.name
-  content = ""
+  content = " "
   depends_on = [google_storage_bucket.entrada_manual]
 }
+
 
 #Dataset-----------------------------------------------------------------------------------------
 
