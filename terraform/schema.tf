@@ -32,7 +32,7 @@ variable "schema_salesteam" {
   {"name": "Sales_Rep", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Sales_Rep_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Company_Name", "type": "STRING", "mode": "NULLABLE"},
-  {"name": "Company_Id", "type": "STRING", "mode": "NULLABLE"}  
+  {"name": "Company_Id", "type": "STRING", "mode": "NULLABLE"}
 ]
 EOF
 }
