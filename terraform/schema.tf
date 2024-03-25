@@ -1,6 +1,5 @@
 variable "schema_invoice" {
   default = <<EOF
-
 [
   {"name": "Order_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Date", "type": "STRING", "mode": "NULLABLE"}, 
@@ -13,7 +12,6 @@ variable "schema_invoice" {
 ]
 EOF
 }
-
 
 variable "schema_orderleads" {
   default = <<EOF

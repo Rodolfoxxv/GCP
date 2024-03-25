@@ -40,6 +40,18 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Destroy
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Format
+        run: terraform fmt
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve -input=false
+
+      #- name: Load data to BigQuery
+        #run: bash load_data.sh
