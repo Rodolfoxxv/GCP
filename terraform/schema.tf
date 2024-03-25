@@ -2,10 +2,10 @@ variable "schema_invoice" {
   default = <<EOF
 [
   {"name": "Order_Id", "type": "STRING", "mode": "NULLABLE"},
-  {"name": "Date", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "Date", "type": "DATE", "mode": "NULLABLE"}, 
   {"name": "Meal_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Company_Id", "type": "STRING", "mode": "NULLABLE"},
-  {"name": "Date_of_Meal", "type": "STRING", "mode": "NULLABLE"},  
+  {"name": "Date_of_Meal", "type": "TIMESTAMP", "mode": "NULLABLE"},  
   {"name": "Participants", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Meal_Price", "type": "FLOAT", "mode": "NULLABLE"},
   {"name": "Type_of_Meal", "type": "STRING", "mode": "NULLABLE"}
