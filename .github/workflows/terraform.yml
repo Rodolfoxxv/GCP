@@ -53,5 +53,5 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
 
-      #- name: Load data to BigQuery
-        #run: bash load_data.sh
+      - name: Load data to BigQuery
+        run: bash load_data.sh
