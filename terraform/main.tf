@@ -34,7 +34,7 @@ resource "google_storage_bucket" "schema_bucket" {
   count    = lookup(var.env, "create_schema_bucket", true) ? 1 : 0
   name     = var.schema_bucket
   location = var.region
-
+  
   versioning {
     enabled = true
   }
@@ -43,6 +43,7 @@ resource "google_storage_bucket" "schema_bucket" {
 resource "google_storage_bucket" "entrada_manual" {
   name     = "entrada_manual"
   location = var.region
+  force_destroy = true
 
   versioning {
     enabled = true
@@ -52,7 +53,6 @@ resource "google_storage_bucket" "entrada_manual" {
 resource "google_storage_bucket" "entrada_auto" {
   name     = "entrada_auto"
   location = var.region
-
   versioning {
     enabled = true
   }
