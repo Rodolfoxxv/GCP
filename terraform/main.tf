@@ -41,7 +41,7 @@ resource "google_storage_bucket" "schema_bucket1" {
 }
 
 resource "google_storage_bucket" "entrada_manual1" {
-  name     = "entrada_manual"
+  name     = var.entrada_manual
   location = var.region
   force_destroy = true
 
@@ -51,7 +51,7 @@ resource "google_storage_bucket" "entrada_manual1" {
 }
 
 resource "google_storage_bucket" "entrada_auto1" {
-  name     = "entrada_auto"
+  name     = var.entrada_auto
   location = var.region
   force_destroy = true
   versioning {
@@ -64,9 +64,9 @@ resource "google_storage_bucket" "entrada_auto1" {
 
 resource "google_storage_bucket_object" "object" {
   name    = "supermarket/"
-  bucket  = google_storage_bucket.entrada_manual.name
+  bucket  = google_storage_bucket.entrada_manual1.name
   content = " "
-  depends_on = [google_storage_bucket.entrada_manual]
+  depends_on = [google_storage_bucket.entrada_manual1]
 }
 
 
