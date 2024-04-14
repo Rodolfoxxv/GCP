@@ -10,7 +10,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     env:
-      PROJECT_ID: portfolioentrada
+      PROJECT_ID: affable-operand-420317
     defaults:
       run:
         working-directory: terraform
@@ -28,7 +28,7 @@ jobs:
         run: |
           echo '${{ secrets.KEY }}' > creds.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=creds.json" >> $GITHUB_ENV
-          echo "PROJECT_ID=portfolioentrada" >> $GITHUB_ENV
+          echo "PROJECT_ID=affable-operand-420317" >> $GITHUB_ENV
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.KEY }}
 

@@ -19,7 +19,7 @@ variable "schema_orderleads" {
   {"name": "Order_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Company_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Company_Name", "type": "STRING", "mode": "NULLABLE"},
-  {"name": "Date", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "Date", "type": "DATE", "mode": "NULLABLE"}, 
   {"name": "Order_Value", "type": "FLOAT", "mode": "NULLABLE"},
   {"name": "Converted", "type": "INTEGER", "mode": "NULLABLE"} 
 ]
@@ -29,10 +29,10 @@ EOF
 variable "schema_salesteam" {
   default = <<EOF
 [
-  {"name": "Sales_Rep", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Sales_Rep",    "type": "STRING", "mode": "NULLABLE"},
   {"name": "Sales_Rep_Id", "type": "STRING", "mode": "NULLABLE"},
   {"name": "Company_Name", "type": "STRING", "mode": "NULLABLE"},
-  {"name": "Company_Id", "type": "STRING", "mode": "NULLABLE"}
+  {"name": "Company_Id",   "type": "STRING", "mode": "NULLABLE"}
 ]
 EOF
 }
