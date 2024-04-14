@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Define the variables
-BUCKET="entrada_manual"
+BUCKET="entrada_manual1"
 DATASET="manual"
-PROJECT_ID="portfolioentrada"
+PROJECT_ID="affable-operand-420317"
 
 # Load data into tb_super_invoice
 bq --location=us-central1 load --source_format=CSV --skip_leading_rows=1 \
