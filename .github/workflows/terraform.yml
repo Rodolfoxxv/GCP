@@ -40,9 +40,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-
       - name: Terraform Validate
         run: terraform validate
 
@@ -54,7 +51,7 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false || (echo 'Terraform Apply failed, running Terraform Destroy' && terraform destroy -auto-approve)
 
       - name: Load data to BigQuery
         run: bash load_data.sh

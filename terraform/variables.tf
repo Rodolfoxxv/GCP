@@ -16,23 +16,23 @@ variable "env" {
 variable "ent_terraform" {
   description = "O nome do bucket para os esquemas"
   type        = string
-  default     = "entrada_terraform"
+  default     = "entrada_terraform1"
 }
 
 variable "schema_bucket" {
   description = "O nome do bucket para os esquemas"
   type        = string
-  default     = "entrada_schema_bucket"
+  default     = "entrada_schema_bucket1"
 }
 
 variable "entrada_manual" {
   description = "O nome do bucket para entrada manual"
   type        = string
-  default     = "entrada_manual"
+  default     = "entrada_manual1"
 }
 
 variable "entrada_auto" {
   description = "O nome do bucket para entrada automática"
   type        = string
-  default     = "entrada_auto"
+  default     = "entrada_auto1"
 }

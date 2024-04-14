@@ -30,7 +30,7 @@ resource "google_storage_bucket" "fixed_bucket_name" {
   }
 }
 
-resource "google_storage_bucket" "schema_bucket" {
+resource "google_storage_bucket" "schema_bucket1" {
   count    = lookup(var.env, "create_schema_bucket", true) ? 1 : 0
   name     = var.schema_bucket
   location = var.region
@@ -40,7 +40,7 @@ resource "google_storage_bucket" "schema_bucket" {
   }
 }
 
-resource "google_storage_bucket" "entrada_manual" {
+resource "google_storage_bucket" "entrada_manual1" {
   name     = "entrada_manual"
   location = var.region
   force_destroy = true
@@ -50,7 +50,7 @@ resource "google_storage_bucket" "entrada_manual" {
   }
 }
 
-resource "google_storage_bucket" "entrada_auto" {
+resource "google_storage_bucket" "entrada_auto1" {
   name     = "entrada_auto"
   location = var.region
   force_destroy = true
