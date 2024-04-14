@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "entrada_terraform"
+    bucket = "entrada_terraform1"
     prefix = "terraform/state"
   }
 }
