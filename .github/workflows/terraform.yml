@@ -47,11 +47,17 @@ jobs:
         run: terraform fmt
 
       - name: Terraform Plan
-        run: terraform plan
+        id: plan
+        run: |
+          set +e
+          output=$(terraform plan -no-color)
+          echo "::set-output name=status::$?"
+          echo "$output"
+        continue-on-error: true
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false || (echo 'Terraform Apply failed, running Terraform Destroy' && terraform destroy -auto-approve)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && steps.plan.outputs.status == '2'
+        run: terraform apply -auto-approve -input=false
 
       - name: Load data to BigQuery
         run: bash load_data.sh
